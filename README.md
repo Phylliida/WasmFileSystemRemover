@@ -1,6 +1,6 @@
 Edit: Don't use this! It doesn't work. The problem is that having multiple memory is not supported so it's non-trivial to graft wasm fs into your wasm if you didn't compile with it. Also, extra bloat.
 
-Instead what you should do is just instantiate both modules and use them that way.
+Instead what you should do is just instantiate both modules and connect them that way.
 
 # WasmFileSystemRemover
 Replaces WASI file systems calls with calls to an in memory file system
