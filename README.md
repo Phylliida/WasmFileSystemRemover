@@ -1,2 +1,2 @@
-# wasm_file_system_remover
+# WasmFileSystemRemover
 Replaces WASI file systems calls with calls to an in memory file system
