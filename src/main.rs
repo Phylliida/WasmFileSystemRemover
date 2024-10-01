@@ -12,16 +12,21 @@ fn get_replacement_module_id(
     fn_id: FunctionId,
 ) -> Option<FunctionId> {
     // for now we only support wasi_unstable and wasi_snapshot_preview1 modules
-    if module_name != "wasi_unstable" && module_name != "wasi_snapshot_preview1" {
+    if !(module_name == "wasi_unstable" || module_name == "wasi_snapshot_preview1") {
+        return None;
+    }
+
+    if !(import_name.starts_with("fd_") || import_name.starts_with("path_")) {
         return None;
     }
 
     let searched_function_name = format!("__fs_custom_{}", import_name);
+    println!("replacing {} {} with {}", module_name, import_name, searched_function_name);
 
-    for fun in module.funcs.iter() {
+    for fun in module.imports.iter() {
         if let Some(name) = &fun.name {
             if *name == searched_function_name {
-                log::debug!(
+                println!(
                     "Function replacement found: {:?} -> {:?}.",
                     module.funcs.get(fn_id).name,
                     module.funcs.get(fun.id()).name
