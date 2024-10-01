@@ -1,0 +1,18 @@
+[package]
+name = "wasifsremover"
+version = "0.0.1"
+edition = "2021"
+description = "Replaces WASI fs commands with an in memory file system"
+keywords = ["wasi"]
+license = "MIT"
+repository = "https://github.com/Phylliida/WasmFileSystemRemover"
+
+
+[dependencies]
+walrus = "0.20.3"
+clap = { version = "4.5.9", features = ["derive"] }
+anyhow = { version = "1.0", default-features = false }
+env_logger = "0.11.0"
+log = "0.4.17"
+wasmprinter = "0.212.0"
+wat = "1.212.0"
